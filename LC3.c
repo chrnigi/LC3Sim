@@ -24,7 +24,7 @@ int main(void)
     while (!halt)
     {
         
-        printf("\nProgram counter: x%x\n", lc3.program_counter);
+        printf("\nProgram counter: x%x:\n", lc3.program_counter);
         fetch(&lc3);
         evaluate_address(&lc3, decode(&lc3));
         
@@ -77,7 +77,7 @@ void evaluate_address(LC3 *lc3, uint16_t opcode)
                 IMM |= 0b1111111111100000;
             }
             
-            ADD_imm(lc3, DEST, SRC1, IMM);            
+            op_ADD_imm(lc3, DEST, SRC1, IMM);            
         } 
         // Else do register mode.
         else 
@@ -88,7 +88,7 @@ void evaluate_address(LC3 *lc3, uint16_t opcode)
 
             SRC2 = (lc3->instruction_register & 0b0000000000000111);
 
-            ADD_register(lc3, DEST, SRC1, SRC2);
+            op_ADD_register(lc3, DEST, SRC1, SRC2);
 
         }
         break;
@@ -108,7 +108,7 @@ void evaluate_address(LC3 *lc3, uint16_t opcode)
                 IMM ^= 0b1111111111100000;
             }
 
-            AND_imm(lc3, DEST, SRC1, IMM);
+            op_AND_imm(lc3, DEST, SRC1, IMM);
         }
         // Else do register mode.
         else 
@@ -119,7 +119,7 @@ void evaluate_address(LC3 *lc3, uint16_t opcode)
 
             SRC2 = (lc3->instruction_register & 0b0000000000000111);
             
-            AND_register(lc3, DEST, SRC1, SRC2);
+            op_AND_register(lc3, DEST, SRC1, SRC2);
         }
         
 

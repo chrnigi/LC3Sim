@@ -1,4 +1,6 @@
+#ifndef MEM_SIZE
 #define MEM_SIZE 65536
+#endif
 
 struct LC3
 {

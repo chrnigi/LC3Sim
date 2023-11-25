@@ -4,7 +4,7 @@
 #include "operations.h"
 
 
-void ADD_register(LC3 *lc3, char DEST, char SRC1, char SRC2)
+void op_ADD_register(LC3 *lc3, char DEST, char SRC1, char SRC2)
 {
     lc3->register_file[DEST] = lc3->register_file[SRC1] + lc3->register_file[SRC2];
 
@@ -26,7 +26,7 @@ void ADD_register(LC3 *lc3, char DEST, char SRC1, char SRC2)
     }
 }
 
-void ADD_imm(LC3 *lc3, char DEST, char SRC1, uint16_t imm5)
+void op_ADD_imm(LC3 *lc3, char DEST, char SRC1, uint16_t imm5)
 {
     lc3->register_file[DEST] = lc3->register_file[SRC1] + imm5;
     
@@ -50,7 +50,7 @@ void ADD_imm(LC3 *lc3, char DEST, char SRC1, uint16_t imm5)
 
 }
 
-void AND_register(LC3 *lc3, char DEST, char SRC1, char SRC2)
+void op_AND_register(LC3 *lc3, char DEST, char SRC1, char SRC2)
 {
     lc3->register_file[DEST] = lc3->register_file[SRC1] & lc3->register_file[SRC2];
 
@@ -72,7 +72,7 @@ void AND_register(LC3 *lc3, char DEST, char SRC1, char SRC2)
     }
 }
 
-void AND_imm(LC3 *lc3, char DEST, char SRC1, uint16_t imm5)
+void op_AND_imm(LC3 *lc3, char DEST, char SRC1, uint16_t imm5)
 {
     lc3->register_file[DEST] = lc3->register_file[SRC1] & imm5;
 
