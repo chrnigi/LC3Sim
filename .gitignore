@@ -1,4 +1,6 @@
 *.exe
 *.elf
+*.out
 *.o
 /.vscode
+*.sh

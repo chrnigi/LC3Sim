@@ -93,3 +93,31 @@ void op_AND_imm(LC3 *lc3, char DEST, char SRC1, uint16_t imm5)
         lc3->p = 1;
     }
 }
+
+void op_NOT(LC3 *lc3, char DEST, char SRC)
+{
+    lc3->register_file[DEST] = ~lc3->register_file[SRC];
+    
+    // Set condition codes.
+    if (lc3->register_file[DEST] & 0b1000000000000000)
+    {
+        lc3->n = 1;
+        lc3->z = 0;
+        lc3->p = 0;
+    } else if (lc3->register_file[DEST] == 0)
+    {
+        lc3->n = 0;
+        lc3->z = 1;
+        lc3->p = 0;
+    } else {
+        lc3->n = 0;
+        lc3->z = 0;
+        lc3->p = 1;
+    }
+}
+
+void op_LD(LC3 *lc3, char DEST, uint16_t pcoffset9)
+{
+    uint16_t ADDR = lc3->program_counter+pcoffset9;
+    lc3->register_file[DEST] = lc3->memory[ADDR];
+}
