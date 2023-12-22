@@ -1,5 +1,7 @@
 #include "LC3.h"
 
+#ifndef OPERATIONS_H
+#define OPERATIONS_H
 
 enum Operations {
     ADD =   0b0001000000000000,
@@ -23,21 +25,23 @@ enum Operations {
 };
 
 // Instruction functions
-void op_ADD_register(LC3* lc3, char DEST, char SRC1, char SRC2);
-void op_ADD_imm(LC3* lc3, char DEST, char SRC1, uint16_t imm5);
+void op_ADD_register(LC3* lc3, reg_t DEST, reg_t SRC1, reg_t SRC2);
+void op_ADD_imm(LC3* lc3, reg_t DEST, reg_t SRC1, int16_t imm5);
 
-void op_AND_register(LC3* lc3, char DEST, char SRC1, char SRC2);
-void op_AND_imm(LC3* lc3, char DEST, char SRC1, uint16_t imm5);
+void op_AND_register(LC3* lc3, reg_t DEST, reg_t SRC1, reg_t SRC2);
+void op_AND_imm(LC3* lc3, reg_t DEST, reg_t SRC1, int16_t imm5);
 
-void op_NOT(LC3* lc3, char DEST, char SRC);
+void op_NOT(LC3* lc3, reg_t DEST, reg_t SRC);
 
-void op_LD(LC3* lc3, char DEST, uint16_t pcoffset9);
-void op_ST(LC3* lc3, char SRC, uint16_t pcoffset9);
+void op_LD(LC3* lc3, reg_t DEST, int16_t pcoffset9);
+void op_ST(LC3* lc3, reg_t SRC, int16_t pcoffset9);
 
-void op_LDI(LC3* lc3, char DEST, uint16_t pcoffset9);
-void op_STI(LC3* lc3, char SRC, uint16_t pcoffset9);
+void op_LDI(LC3* lc3, reg_t DEST, int16_t pcoffset9);
+void op_STI(LC3* lc3, reg_t SRC, int16_t pcoffset9);
 
-void op_LDR(LC3* lc3, char DEST, char BASE, char offset6);
-void op_STR(LC3* lc3, char SRC, char BASE, char offset6);
+void op_LDR(LC3* lc3, reg_t DEST, reg_t BASE, int16_t offset6);
+void op_STR(LC3* lc3, reg_t SRC, reg_t BASE, int16_t offset6);
 
-void op_LEA(LC3* lc3, char DEST, int16_t pcoffset9);
+void op_LEA(LC3* lc3, reg_t DEST, int16_t pcoffset9);
+
+#endif

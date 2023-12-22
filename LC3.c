@@ -62,8 +62,8 @@ uint16_t decode(LC3* lc3)
 
 void evaluate_address(LC3 *lc3, uint16_t opcode)
 {
-    uint8_t DEST;
-    uint8_t SRC1;
+    reg_t DEST;
+    reg_t SRC1;
     uint16_t SRC2;
     uint16_t IMM;
     switch (opcode)

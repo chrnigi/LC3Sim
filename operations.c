@@ -4,7 +4,7 @@
 #include "operations.h"
 
 
-void op_ADD_register(LC3 *lc3, char DEST, char SRC1, char SRC2)
+void op_ADD_register(LC3 *lc3, reg_t DEST, reg_t SRC1, reg_t SRC2)
 {
     lc3->register_file[DEST] = lc3->register_file[SRC1] + lc3->register_file[SRC2];
 
@@ -26,7 +26,7 @@ void op_ADD_register(LC3 *lc3, char DEST, char SRC1, char SRC2)
     }
 }
 
-void op_ADD_imm(LC3 *lc3, char DEST, char SRC1, uint16_t imm5)
+void op_ADD_imm(LC3 *lc3, reg_t DEST, reg_t SRC1, int16_t imm5)
 {
     lc3->register_file[DEST] = lc3->register_file[SRC1] + imm5;
     
@@ -50,7 +50,7 @@ void op_ADD_imm(LC3 *lc3, char DEST, char SRC1, uint16_t imm5)
 
 }
 
-void op_AND_register(LC3 *lc3, char DEST, char SRC1, char SRC2)
+void op_AND_register(LC3 *lc3, reg_t DEST, reg_t SRC1, reg_t SRC2)
 {
     lc3->register_file[DEST] = lc3->register_file[SRC1] & lc3->register_file[SRC2];
 
@@ -72,7 +72,7 @@ void op_AND_register(LC3 *lc3, char DEST, char SRC1, char SRC2)
     }
 }
 
-void op_AND_imm(LC3 *lc3, char DEST, char SRC1, uint16_t imm5)
+void op_AND_imm(LC3 *lc3, reg_t DEST, reg_t SRC1, int16_t imm5)
 {
     lc3->register_file[DEST] = lc3->register_file[SRC1] & imm5;
 
@@ -94,7 +94,7 @@ void op_AND_imm(LC3 *lc3, char DEST, char SRC1, uint16_t imm5)
     }
 }
 
-void op_NOT(LC3 *lc3, char DEST, char SRC)
+void op_NOT(LC3 *lc3, reg_t DEST, reg_t SRC)
 {
     lc3->register_file[DEST] = ~lc3->register_file[SRC];
     
@@ -116,8 +116,46 @@ void op_NOT(LC3 *lc3, char DEST, char SRC)
     }
 }
 
-void op_LD(LC3 *lc3, char DEST, uint16_t pcoffset9)
+void op_LD(LC3 *lc3, reg_t DEST, int16_t pcoffset9)
 {
-    uint16_t ADDR = lc3->program_counter+pcoffset9;
+    uint16_t ADDR = (lc3->program_counter) + pcoffset9;
     lc3->register_file[DEST] = lc3->memory[ADDR];
+}
+
+void op_ST(LC3 *lc3, reg_t SRC, int16_t pcoffset9) 
+{
+    uint16_t ADDR = (lc3->program_counter) + pcoffset9;
+    lc3->memory[ADDR] = lc3->register_file[SRC];
+}
+
+void op_LDI(LC3 *lc3, reg_t DEST, int16_t pcoffset9) 
+{
+    uint16_t ADDR_i = (lc3->program_counter) + pcoffset9;
+    uint16_t ADDR_d = lc3->memory[ADDR_i];
+    lc3->register_file[DEST] = lc3->memory[ADDR_d];
+}
+
+void op_STI(LC3 *lc3, reg_t SRC, int16_t pcoffset9) 
+{
+    uint16_t ADDR_i = (lc3->program_counter) + pcoffset9;
+    uint16_t ADDR_d = lc3->memory[ADDR_i];
+    lc3->memory[ADDR_d] = lc3->register_file[SRC];
+}
+
+void op_LDR(LC3 *lc3, reg_t DEST, reg_t BASE, int16_t offset6) 
+{
+    uint16_t ADDR = lc3->register_file[BASE] + offset6;
+    lc3->register_file[DEST] = lc3->memory[ADDR];
+}
+
+void op_STR(LC3 *lc3, reg_t SRC, reg_t BASE, int16_t offset6) 
+{
+    uint16_t ADDR = lc3->register_file[BASE] + offset6;
+    lc3->memory[ADDR] = lc3->register_file[SRC];
+}
+
+void op_LEA(LC3 *lc3, reg_t DEST, int16_t pcoffset9) 
+{
+    uint16_t ADDR = (lc3->program_counter) + pcoffset9;
+    lc3->register_file[DEST] = ADDR;
 }

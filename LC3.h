@@ -20,4 +20,7 @@ struct LC3
 
 typedef struct LC3 LC3;
 
+// Register indexing type.
+typedef uint8_t reg_t;
+
 #endif
