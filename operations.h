@@ -1,3 +1,5 @@
+#include "LC3.h"
+
 
 enum Operations {
     ADD =   0b0001000000000000,

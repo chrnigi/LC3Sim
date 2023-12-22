@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <inttypes.h>
+#include <stdint.h>
 #include "LC3.h"
 #include "operations.h"
 
