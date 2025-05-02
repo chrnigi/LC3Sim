@@ -1,4 +1,4 @@
-#include "LC3.h"
+#include <LC3.h>
 
 #ifndef OPERATIONS_H
 #define OPERATIONS_H

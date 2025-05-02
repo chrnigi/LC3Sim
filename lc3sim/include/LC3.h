@@ -23,4 +23,9 @@ typedef struct LC3 LC3;
 // Register indexing type.
 typedef uint8_t reg_t;
 
+// Cycle functions
+void fetch(LC3* lc3);
+uint16_t decode(LC3* lc3);
+void evaluate_address(LC3* lc3, uint16_t opcode);
+
 #endif

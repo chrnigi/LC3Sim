@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <inttypes.h>
-#include "LC3.h"
-#include "operations.h"
-
+#include <LC3.h>
+#include <operations.h>
 
 void op_ADD_register(LC3 *lc3, reg_t DEST, reg_t SRC1, reg_t SRC2)
 {
