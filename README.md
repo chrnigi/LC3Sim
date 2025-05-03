@@ -6,11 +6,11 @@ CMake is needed to build the project.
 ### Build commands
 To build the current version, navigate to the project root and run the following commands:
 
-``mkdir build``
+    mkdir build
 
-``cd build/``
+    cd build/
 
-``cmake ..``
+    cmake ..
 
-``cmake --build .``
+    cmake --build .
 
