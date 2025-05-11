@@ -31,7 +31,7 @@ int main(void)
         
         for (int j = 0; j < 4; j++)
         {
-            printf("Register %d: %hi\n", j, lc3.register_file[j]);
+            printf("Register %d: %-5hi\tRegister %d: %-5hi\n", j, lc3.register_file[j], j+4, lc3.register_file[j+4]);
         }
         if (i == 7)
         {
